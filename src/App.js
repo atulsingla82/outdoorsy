@@ -19,19 +19,13 @@ class App extends Component {
 
             <Grid>
             <Row className = "show-grid">
-             <Col md = { 6 } md = { 6 }>
-
+            
+            <SearchForm />
             <Featured/>
 
-            </Col> 
-
-            <Col md = { 6 } md = { 6 }>
-            <SearchForm />
-            </Col> 
+    
             </Row> 
             </Grid>
-
-           
 
             <Footer />
             
