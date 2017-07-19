@@ -27,14 +27,13 @@ render() {
               
       <Navbar.Header>
         <Navbar.Brand>
-      <a href = "/"> Outdoorsy </a> 
-    </Navbar.Brand> 
-     <Navbar.Toggle/>
-  </Navbar.Header> 
-     <Navbar.Collapse >
+            <a href = "/"> Outdoorsy </a> 
+        </Navbar.Brand> 
+        <Navbar.Toggle/>
+      </Navbar.Header> 
+    
+    <Navbar.Collapse >
         <Nav pullRight>
-           
-
         <section>
             <div id="signInSignUp">
                 <input type="button" value="Sign Up" onClick={() => this.openModal()} />
@@ -56,11 +55,7 @@ render() {
                 </Modal>
 
             </section>
-          
-
-
-
-            
+ 
         </Nav> 
     </Navbar.Collapse> 
 </Navbar> 
