@@ -14,7 +14,6 @@ constructor(props) {
             visible : true
         });
     }
-
     closeModal() {
         this.setState({
             visible : false
@@ -37,10 +36,12 @@ render() {
            
 
         <section>
+            <div id="signInSignUp">
                 <input type="button" value="Sign Up" onClick={() => this.openModal()} />
                  &nbsp;
                  &nbsp;
                 <input type="button" value="Log In " onClick={() => this.openModal()} />
+            </div>
                 <Modal 
                     visible={this.state.visible}
                     width="30%"
