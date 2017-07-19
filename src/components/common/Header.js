@@ -65,11 +65,4 @@ render() {
     </Navbar.Collapse> 
 </Navbar> 
 
-
-    )
-       }
-
-
-        }
-
-        export default Header;
+export default Header;
