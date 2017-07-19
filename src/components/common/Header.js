@@ -43,8 +43,8 @@ render() {
                 <input type="button" value="Log In " onClick={() => this.openModal()} />
                 <Modal 
                     visible={this.state.visible}
-                    width="500"
-                    height="500"
+                    width="30%"
+                    height="60%"
                     effect="fadeInUp"
                     onClickAway={() => this.closeModal()}>
                     <div>
