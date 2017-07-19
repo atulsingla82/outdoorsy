@@ -7,6 +7,7 @@
     "debug": "^2.6.8",
     "express": "^4.15.3",
     "materialize-css": "^0.99.0",
+    "load-google-maps-api": "^1.0.0",
     "mongoose": "^4.11.3",
     "morgan": "^1.8.2",
     "node-sass-chokidar": "0.0.3",
@@ -24,6 +25,7 @@
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "server": "node server.js",
     "start-js": "react-scripts start",
     "server": "node server.js",
     "start": "npm-run-all -p watch-css start-js server",
