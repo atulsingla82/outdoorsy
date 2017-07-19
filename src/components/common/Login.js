@@ -41,22 +41,10 @@ export default class Login extends Component {
         	effect="fadeInUp" 
         	onClickAway={() => this.closeModal()}>
           <div>
+            <br/>
             <h1>Login</h1>
             <form>
             	<br/>
-	            <label>First Name:</label>
-	            <input
-	            	name="firstName"
-	            	type="text"
-	            	width="80%"
-	            />
-	            <br/>
-	            <label>Last Name:</label>
-	            <input
-	            	name="lastName"
-	            	type="text"
-	            	width="80%"
-	            />
 	            <br/>
 	            <lable>Email</lable>
 	            <input
@@ -77,9 +65,17 @@ export default class Login extends Component {
 	            	value="submit"
 	            />
 	          </form>
+            <br/>  <br/>
+            {/*route to Register modal popup and form*/}
+            <h4>Need an account? </h4>
             <a 
-            	href="javascript:void(0);" 
-            	onClick={() => this.closeModal()}>Close</a>
+              href="">
+              Sign up here.</a>
+              <br/>
+              <br/>
+              <a 
+              href="javascript:void(0);" 
+              onClick={() => this.closeModal()}>Close</a>
           </div>
         </Modal>
       </section>
