@@ -39,7 +39,7 @@ export default class Login extends Component {
         	effect="fadeInUp" 
         	onClickAway={() => this.closeModal()}>
           <div>
-            <h1>Login</h1>
+            <h1>Register</h1>
             <p>Some Contents</p>
             <a 
             	href="javascript:void(0);" 
