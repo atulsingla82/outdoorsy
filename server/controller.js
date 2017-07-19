@@ -21,7 +21,7 @@ app.post("/createUser", function(req, res) {
       console.log(err);
     }
     else {
-      res.send("New user created");
+      res.send("New user created!");
     }
   });
 
