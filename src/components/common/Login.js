@@ -7,26 +7,28 @@ export default class Login extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          visible : false
+        visible : false,
       }
+
   }
 
   openModal() {
       this.setState({
-          visible : true
+        visible : true
       });
   }
 
   closeModal() {
       this.setState({
-          visible : false
+        visible : false
       });
   }
  
   render() {
     return (
-      <section>
-
+      <section
+      	align="left"
+      >
         <input 
         	type="button" 
         	value="Login" 
@@ -40,7 +42,41 @@ export default class Login extends Component {
         	onClickAway={() => this.closeModal()}>
           <div>
             <h1>Login</h1>
-            <p>Some Contents</p>
+            <form>
+            	<br/>
+	            <label>First Name:</label>
+	            <input
+	            	name="firstName"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <label>Last Name:</label>
+	            <input
+	            	name="lastName"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <lable>Email</lable>
+	            <input
+	            	name="email"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <lable>Password</lable>
+	            <input
+	            	name="password"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <input
+	            	type="submit"
+	            	value="submit"
+	            />
+	          </form>
             <a 
             	href="javascript:void(0);" 
             	onClick={() => this.closeModal()}>Close</a>
