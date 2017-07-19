@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {  Grid, Row, Col} from 'react-bootstrap';
 
-import './App.css';
+import './styles/App.css';
 import SearchForm from './components/SearchForm';
 import Results from './components/Results';
 import Header from './components/common/Header';
