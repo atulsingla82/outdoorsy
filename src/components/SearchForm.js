@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ButtonToolbar, Button, ButtonGroup, Well } from 'react-bootstrap';
-import './searchform.css';
+import '../styles/searchform.css';
 import Geosuggest from 'react-geosuggest';
 
 
