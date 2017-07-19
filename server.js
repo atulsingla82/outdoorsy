@@ -1,16 +1,18 @@
 // Include Server Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 // Require History Schema
 // var History = require("./models/History");
 
 // Create Instance of Express
-var app = express();
+const app = express();
 // Sets an initial port. We'll use this later in our listener
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -24,7 +26,7 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);

@@ -7,26 +7,28 @@ export default class Login extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          visible : false
+        visible : false,
       }
+
   }
 
   openModal() {
       this.setState({
-          visible : true
+        visible : true
       });
   }
 
   closeModal() {
       this.setState({
-          visible : false
+        visible : false
       });
   }
  
   render() {
     return (
-      <section>
-
+      <section
+      	align="left"
+      >
         <input 
         	type="button" 
         	value="Login" 
@@ -39,11 +41,41 @@ export default class Login extends Component {
         	effect="fadeInUp" 
         	onClickAway={() => this.closeModal()}>
           <div>
+            <br/>
             <h1>Login</h1>
-            <p>Some Contents</p>
+            <form>
+            	<br/>
+	            <br/>
+	            <lable>Email</lable>
+	            <input
+	            	name="email"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <lable>Password</lable>
+	            <input
+	            	name="password"
+	            	type="text"
+	            	width="80%"
+	            />
+	            <br/>
+	            <input
+	            	type="submit"
+	            	value="submit"
+	            />
+	          </form>
+            <br/>  <br/>
+            {/*route to Register modal popup and form*/}
+            <h4>Need an account? </h4>
             <a 
-            	href="javascript:void(0);" 
-            	onClick={() => this.closeModal()}>Close</a>
+              href="">
+              Sign up here.</a>
+              <br/>
+              <br/>
+              <a 
+              href="javascript:void(0);" 
+              onClick={() => this.closeModal()}>Close</a>
           </div>
         </Modal>
       </section>
