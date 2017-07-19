@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
+import Login from './Login.js';
+import Register from './Register.js';
 
 export default class Header extends Component {
 constructor(props) {
@@ -34,26 +36,12 @@ constructor(props) {
             <Navbar.Collapse >
                 <Nav pullRight>
                 <section>
-                    <div id="signInSignUp">
-                        <input type="button" value="Sign Up" onClick={() => this.openModal()} />
-                         &nbsp;
-                         &nbsp;
-                        <input type="button" value="Log In " onClick={() => this.openModal()} />
-                    </div>
-                        <Modal 
-                            visible={this.state.visible}
-                            width="30%"
-                            height="60%"
-                            effect="fadeInUp"
-                            onClickAway={() => this.closeModal()}>
-                            <div>
-                                <h1>Welcome </h1>
-                                <p>Some Contents</p>
-                                <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
-                            </div>
-                        </Modal>
+                    
 
-                    </section>
+                      <Login />
+                      <Register />
+
+                </section>
          
                 </Nav> 
             </Navbar.Collapse> 
