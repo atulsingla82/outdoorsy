@@ -14,23 +14,11 @@ var style = {
 
 class Footer extends Component {
 
-render() {
+    render() {
         return ( 
-         
-              
-   <footer className="footer" style={style}>
-    <p>
-     
-    Proudly built using React.js
-
-    </p>
-  </footer>
-         
-            
-            
-
-
-            
+            <footer className="footer" style={style}>
+                <p>Proudly built using React.js</p>
+            </footer>    
         );
     }
 }
