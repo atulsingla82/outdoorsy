@@ -6,8 +6,7 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-// Require History Schema
-// var History = require("./models/History");
+const User = require('./models/user');
 
 // Create Instance of Express
 const app = express();
@@ -18,10 +17,33 @@ const PORT = process.env.PORT || 3000;
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//express + passport
+app.use(require('express-session')({
+  secret: 'any random string can go here',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static("./public")); 
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use(express.static("./public"));
+// app.use('/', index);
+// app.use('/api', api);
+
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404
+  next(err);
+});
+
 
 // -------------------------------------------------
 
@@ -38,46 +60,7 @@ db.once("open", function() {
 
 // -------------------------------------------------
 
-// Main "/" Route. This will redirect the user to our rendered React application
-// app.get("/", function(req, res) {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
 
-// This is the route we will send GET requests to retrieve our most recent search data.
-// We will call this route the moment our page gets rendered
-// app.get("/api", function(req, res) {
-
-  // We will find all the records, sort it in descending order, then limit the records to 5
-//   History.find({}).sort([
-//     ["date", "descending"]
-//   ]).limit(5).exec(function(err, doc) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       res.send(doc);
-//     }
-//   });
-// });
-
-// This is the route we will send POST requests to save each search.
-// app.post("/api", function(req, res) {
-//   console.log("BODY: " + req.body.location);
-
-  // Here we'll save the location based on the JSON input.
-  // We'll use Date.now() to always get the current date time
-//  History.create({
-//     location: req.body.location,
-//     date: Date.now()
-//   }, function(err) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       res.send("Saved Search");
-//     }
-//   });
-// });
 
 // -------------------------------------------------
 
