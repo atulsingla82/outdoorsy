@@ -1,5 +1,6 @@
 var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose')
 
 var AdventureSchema = new Schema ({
 	activityType: {
@@ -13,12 +14,16 @@ var AdventureSchema = new Schema ({
 	savedBy: {
 		type: Array,
 		required: true
-	}
-	// time: {
-	// 	type: 
-	// }
-	registrants: {
+	},
+	time: {
+		type: String // is this correct?
+	},
+	attendees: {
 		type: Array,
 		required: false
 	}
 })
+
+AdventureSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model("Adventure", AdventureSchema);
