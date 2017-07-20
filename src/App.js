@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Grid, Row, Col} from 'react-bootstrap';
-
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import './styles/App.css';
 import SearchForm from './components/SearchForm';
 import Results from './components/Results';
@@ -13,6 +13,7 @@ class App extends Component {
 
     render() {
         return ( 
+            <Router>
           <div className = "App">
               
           <Header />
@@ -23,14 +24,14 @@ class App extends Component {
             <SearchForm />
             <Featured/>
 
-    
+           <Route path="/Results" component={Results} />
             </Row> 
             </Grid>
 
             <Footer />
             
             </div>
-
+            </Router>
         );
     }
 
