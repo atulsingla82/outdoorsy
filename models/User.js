@@ -5,6 +5,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new Schema({
 	firstname: {
 		type: String, 
+		select: false,
 		trim: true,
 		required: true
 	},
@@ -18,18 +19,15 @@ const UserSchema = new Schema({
 		match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
 		required: true
 	},
-	// email: {
-	// 	type: mongoose.SchemaTypes.Email, required: true
-	// },
 	password: {
 		type: String, 
 		required: true,
-	    validate: [
-	      function(input) {
-	        return input.length >= 6;
-	      },
-	      "Password should be longer."
-	    ]	
+    validate: [
+      function(input) {
+        return input.length >= 6;
+      },
+      "Password should be longer."
+    ]	
 	}
 });
 
