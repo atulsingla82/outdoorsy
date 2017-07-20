@@ -1,5 +1,6 @@
 // Include Server Dependencies
 const express = require("express");
+const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -27,6 +28,7 @@ const PORT = process.env.PORT || 3000;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //express + passport
