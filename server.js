@@ -11,7 +11,7 @@ const User = require('./models/user');
 // Create Instance of Express
 const app = express();
 // Sets an initial port. We'll use this later in our listener
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
