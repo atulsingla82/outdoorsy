@@ -13,7 +13,7 @@ const app = express();
 
 //bring in the models
 const User = require('./models/User');
-const Adventure = require(.'/models/Adventure')
+const Adventure = require('./models/Adventure')
 
 // Connect to Mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
@@ -29,10 +29,6 @@ db.once("open", function() {
 
 // Sets an initial port. Used in our listener
 const PORT = process.env.PORT || 3001;
-
-//testing
-const users = require('./routes/api/users')
-app.use('/api/users', users);
 
 // Run Morgan for Logging
 app.use(logger("dev"));

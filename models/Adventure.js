@@ -14,11 +14,11 @@ var AdventureSchema = new Schema ({
 	savedBy: {
 		type: Array,
 		required: true
-	}
+	},
 	time: {
-		type: String //is this correct?
-	}
-	registrants: {
+		type: String // is this correct?
+	},
+	attendees: {
 		type: Array,
 		required: false
 	}
