@@ -81,6 +81,15 @@ class App extends Component {
     }
 
     render() {
+        const ResultsPageProps = (props) => {
+            return (
+                <Results
+                locations={this.state.results}
+                {...props}
+                />  
+            )
+        }
+        
         return ( 
             <Router>
           <div className = "App">
@@ -93,7 +102,7 @@ class App extends Component {
             <SearchForm setParentLocation={this.setParentLocation} googleAPI={this.state.googleAPI} />
             <Featured/>
 
-           <Route path="/Results" component={Results} />
+           <Route path="/Results" render={ResultsPageProps}/>
             </Row> 
             </Grid>
 
