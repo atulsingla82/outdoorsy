@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { ButtonToolbar, Button, ButtonGroup, Well } from 'react-bootstrap';
 import loadGoogleMapsAPI from 'load-google-maps-api';
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+
+
 
 import '../styles/searchform.css';
 
@@ -112,43 +115,43 @@ class SearchForm extends Component {
         </div>
         <form onSubmit={this.handleSubmit}>
             <div className = "container-button">
-                <ButtonToolbar>
+                <ButtonGroup bsSize = "large">
                     <Button 
-                        bsStyle = "success"
+                         type="checkbox"
                         name="activity"
                         value = "hiking"
                         onClick = { this.handleInputChange }>
                         Hiking 
                         </Button>
                     <Button 
-                        bsStyle = "success"
+                         type="checkbox"
                         name="activity"
                         value = "mountain biking"
                         onClick = { this.handleInputChange }>
                         Biking 
                     </Button> 
                     <Button 
-                        bsStyle = "success"
+                         type="checkbox"
                         name="activity"
                         value=""
                         onClick = { this.handleInputChange }>
                         Camping 
                     </Button> 
                     <Button 
-                        bsStyle = "success"
+                         type="checkbox"
                         name="activity"
                         value="skiing"
                         onClick = { this.handleInputChange }>
                         Snow Sports 
                         </Button> 
                     <Button 
-                        bsStyle = "success"
+                         type="checkbox"
                         name="activity"
                         value="paddling"
                         onClick = { this.handleInputChange }>
                         Kayaking/Canoeing 
                     </Button> 
-                </ButtonToolbar> 
+                  </ButtonGroup>
             </div>
             <ButtonGroup bsSize = "large">
                 <Button
@@ -170,7 +173,10 @@ class SearchForm extends Component {
                     30 miles 
                 </Button> 
             </ButtonGroup> 
-            <button type="submit">Submit</button>
+            <br />
+            <br />
+            <Link to="/Results"> <Button type="submit"  >Submit</Button> </Link>
+           
         </form>
             </Well>
         )
