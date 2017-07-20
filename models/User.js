@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-//require('mongoose-type-email');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose');
 
-var UserSchema = new Schema({
+const UserSchema = new Schema({
 	firstname: {
 		type: String, 
 		trim: true,
@@ -15,7 +15,7 @@ var UserSchema = new Schema({
 	email: {
 		type: String, 
 		unique: true,
-		match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+		match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
 		required: true
 	},
 	// email: {
@@ -31,8 +31,11 @@ var UserSchema = new Schema({
 	      "Password should be longer."
 	    ]	
 	}
-
 });
 
-var User = mongoose.model("User", UserSchema);
-module.exports = User;
+UserSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model("User", UserSchema);
+
+
+
