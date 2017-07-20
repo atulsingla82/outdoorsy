@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 var style = {
     backgroundColor: "grey",
     color:"white",
-    
     padding: "20px",
     position: "relative",
     left: "0",
@@ -10,7 +9,6 @@ var style = {
     height: "60px",
     width: "100%",
 };
-
 
 class Footer extends Component {
 
