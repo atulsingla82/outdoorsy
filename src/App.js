@@ -15,13 +15,15 @@ class App extends Component {
         super(props);
         this.setParentLocation = this.setParentLocation.bind(this);
         this.queryPlaces = this.queryPlaces.bind(this);
+        this.queryPlacesDetails = this.queryPlacesDetails.bind(this);
         this.state = {
             lat: null,
             lng: null,
             activity: "",
             searchRadius: null,
             apiLoaded: false,
-            results: []            
+            results: [],
+            featuredShowing: true            
         }
     }
 
@@ -44,14 +46,19 @@ class App extends Component {
         const lng = this.state.lng;
         const activity = this.state.activity;
         const searchRadius = this.state.searchRadius; 
+        const results = this.state.results;
         if (lat !== null && lng !== null && searchRadius !== null && activity !== "") {
             this.queryPlaces();
+        }
+        if (results !== []) {
+            this.setState({featuredShowing: false})
         }
     }
 
     queryPlaces () { 
         const googleAPI = this.state.googleAPI;
         let service;
+        let results
         const initialize = () => {
           const locationCoords = {lat: this.state.lat, lng: this.state.lng};
           const request = {
@@ -62,14 +69,24 @@ class App extends Component {
           service = new googleAPI.places.PlacesService(document.createElement('div.attributions'));
           let callback = (results, status) => {
             if (status === googleAPI.places.PlacesServiceStatus.OK) {
-                console.log(results);
+              console.log(results);
               this.setState({results: results});
+              results = this.state.results;
+              this.queryPlacesDetails(results);
             }
           }
           service.nearbySearch(request, callback);      
         }
         initialize();
-  }
+    }
+
+    queryPlacesDetails(results) {
+        const googleAPI = this.state.googleAPI;
+    }
+
+    queryPlacesPhotos() {
+
+    }
 
     setParentLocation(newLat, newLng, newActivity, newSearchRadius) {
         this.setState({
@@ -84,7 +101,7 @@ class App extends Component {
         const ResultsPageProps = (props) => {
             return (
                 <Results
-                locations={this.state.results}
+                places={this.state.results}
                 {...props}
                 />  
             )
@@ -99,10 +116,11 @@ class App extends Component {
             <Grid>
             <Row className = "show-grid">
             <Banner />
+
             <SearchForm setParentLocation={this.setParentLocation} googleAPI={this.state.googleAPI} />
             <Featured/>
+            <Route path="/Results" render={ResultsPageProps}/>
 
-           <Route path="/Results" render={ResultsPageProps}/>
             </Row> 
             </Grid>
 
