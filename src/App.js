@@ -21,7 +21,7 @@ class App extends Component {
             activity: "",
             searchRadius: null,
             apiLoaded: false,
-            results: []            
+            results: [],
         }
     }
 
@@ -39,7 +39,6 @@ class App extends Component {
     }
 
     componentDidUpdate() {
-        const googleAPI = this.state.googleAPI;
         const lat = this.state.lat;
         const lng = this.state.lng;
         const activity = this.state.activity;
@@ -61,15 +60,16 @@ class App extends Component {
           };    
           service = new googleAPI.places.PlacesService(document.createElement('div.attributions'));
           let callback = (results, status) => {
-            if (status === googleAPI.places.PlacesServiceStatus.OK) {
-                console.log(results);
+            if (status === googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
+              console.log(results);
               this.setState({results: results});
+              results = this.state.results;
             }
           }
           service.nearbySearch(request, callback);      
         }
         initialize();
-  }
+    }
 
     setParentLocation(newLat, newLng, newActivity, newSearchRadius) {
         this.setState({
@@ -84,7 +84,8 @@ class App extends Component {
         const ResultsPageProps = (props) => {
             return (
                 <Results
-                locations={this.state.results}
+                places={this.state.results}
+                activity={this.state.activity}
                 {...props}
                 />  
             )
@@ -99,10 +100,11 @@ class App extends Component {
             <Grid>
             <Row className = "show-grid">
             <Banner />
+
             <SearchForm setParentLocation={this.setParentLocation} googleAPI={this.state.googleAPI} />
             <Featured/>
+            <Route path="/Results" render={ResultsPageProps}/>
 
-           <Route path="/Results" render={ResultsPageProps}/>
             </Row> 
             </Grid>
 
