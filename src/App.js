@@ -23,7 +23,6 @@ class App extends Component {
             searchRadius: null,
             apiLoaded: false,
             results: [],
-            featuredShowing: true            
         }
     }
 
@@ -49,9 +48,6 @@ class App extends Component {
         const results = this.state.results;
         if (lat !== null && lng !== null && searchRadius !== null && activity !== "") {
             this.queryPlaces();
-        }
-        if (results !== []) {
-            this.setState({featuredShowing: false})
         }
     }
 
