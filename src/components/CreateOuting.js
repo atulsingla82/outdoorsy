@@ -51,33 +51,33 @@ export default class CreateOuting extends Component {
             <form onSubmit={this.handleSubmit}>
             	<br/>
 	            <br/>
-	            <label>Location: </label>
+	            <label>Location: </label><br />
 	            <input
 	            	name="location"
                 readOnly="readOnly"
                 value={this.props.selectedPlace.name}
                 placeholder={this.props.selectedPlace.name}
 	            	type="text"
-	            	width="80%"
+	            	width="75px"
 	            />
 	            <br/>
-              <label>Activity: </label>
+              <label>Activity: </label><br />
               <input
                 name="activity"
                 readOnly="readOnly"
                 value={this.props.activity}
                 placeholder={this.props.activity}
                 type="text"
-                width="80%"
+                width="75px"
               />
               <br />
-	            <label>Date: </label>
+	            <label>Date: </label><br />
 	            <input
 	            	name="date"
 	            	type="date"
-	            	width="80%"
+	            	width="75px"
 	            />
-	            <br/>
+              <br />
 	            <input
 	            	type="submit"
 	            	value="submit"
