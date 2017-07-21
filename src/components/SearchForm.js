@@ -16,7 +16,6 @@ class SearchForm extends Component {
             lng: null,
             activity: "",
             searchRadius: null,
-            results: []
         }
   }
 
@@ -79,35 +78,35 @@ class SearchForm extends Component {
             <div className = "container-button">
                 <ButtonGroup bsSize = "large">
                     <Button 
-                        type="checkbox"
+                        type="radio"
                         name="activity"
                         value = "hiking"
                         onClick = { this.handleInputChange }>
                         Hiking 
                         </Button>
                     <Button 
-                         type="checkbox"
+                         type="radio"
                         name="activity"
                         value = "mountain biking"
                         onClick = { this.handleInputChange }>
                         Biking 
                     </Button> 
                     <Button 
-                         type="checkbox"
+                        type="radio"
                         name="activity"
                         value="camping"
                         onClick = { this.handleInputChange }>
                         Camping 
                     </Button> 
                     <Button 
-                         type="checkbox"
+                         type="radio"
                         name="activity"
                         value="skiing"
                         onClick = { this.handleInputChange }>
                         Snow Sports 
                         </Button> 
                     <Button 
-                         type="checkbox"
+                         type="radio"
                         name="activity"
                         value="paddling"
                         onClick = { this.handleInputChange }>
@@ -118,21 +117,21 @@ class SearchForm extends Component {
             <div>
             <ButtonGroup bsSize = "large">
                 <Button
-                    type="checkbox"
+                    type="radio"
                     name="searchRadius"
                     value={16094}
                     onClick = { this.handleInputChange }>
                     10 miles 
                  </Button> 
                 <Button
-                    type="checkbox"
+                    type="radio"
                     name="searchRadius"
                     value={32187}
                     onClick = { this.handleInputChange }> 
                     20 miles 
                 </Button> 
                 <Button
-                    type="checkbox"
+                    type="radio"
                     name="searchRadius"
                     value={48280}
                     onClick = { this.handleInputChange }> 
@@ -142,7 +141,9 @@ class SearchForm extends Component {
             </div>
             <br />
             <br />
-            <Link to="/Results"> <Button type="submit">Submit</Button> </Link>
+            <Link to="/Results">
+                <Button>Submit</Button> 
+            </Link>
            
         </form>
             </Well>
