@@ -2,12 +2,30 @@ import React, { Component } from 'react';
 import { Grid, Row,Thumbnail,Button,Col,Image} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 
-export default class Results extends React.Component {
+class Results extends React.Component {
 
 constructor(props) {
-        super(props);
-
+    super(props);
+    this.renderPlaces = this.renderPlaces.bind(this);
 }
+
+renderPlaces(key) {
+    const place = this.props.places[key];
+    return (
+    <div className="view-places" key={key}>
+      <Col xs={6} md={4}>
+        <Thumbnail src="/images/hiking2.jpg" alt="242x200">
+        <h4>{place.name}</h4>
+        <p>Description</p>
+        <p>
+          <Button bsStyle="primary">Button</Button>&nbsp;
+          <Button bsStyle="default">Button</Button>
+          </p>
+        </Thumbnail>
+      </Col>
+    </div>
+    )
+  }
 
 render(){
   return (
@@ -18,33 +36,18 @@ render(){
 
       <Grid>
     <Row>
-    <Col xs={6} md={4}>
-      <Thumbnail src="/images/hiking2.jpg" alt="242x200">
-        <h3>Thumbnail label</h3>
-        <p>Description</p>
-        <p>
-          <Button bsStyle="primary">Button</Button>&nbsp;
-          <Button bsStyle="default">Button</Button>
-        </p>
-      </Thumbnail>
-    </Col>
+      {Object.keys(this.props.places).map(this.renderPlaces)}    
     </Row>
     </Grid>
 
         </div> 
 
       </div>
-
-
-
-
   	)
-
-
+  }
 }
 
-}
-
+export default Results;
 
 
 
