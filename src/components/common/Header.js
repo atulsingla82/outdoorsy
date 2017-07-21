@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar} from 'react-bootstrap';
-import Modal from 'react-awesome-modal';
 import Login from './Login.js';
 import Register from './Register.js';
 

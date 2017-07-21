@@ -9,7 +9,7 @@ class SearchForm extends Component {
     constructor(props) {
         super(props);
         this.getLocation = this.getLocation.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             lat: null,
@@ -44,7 +44,7 @@ class SearchForm extends Component {
     }
 
     /*  Grabs values from input button groups and stores them in state */
-    handleInputChange(event) {
+    handleChange(event) {
         let newState = {};
         newState[event.target.name] = event.target.value;
         this.setState(newState);
@@ -78,72 +78,72 @@ class SearchForm extends Component {
             <div className = "container-button">
                 <ButtonGroup bsSize = "large">
                     <Button 
-                        type="radio"
+                        type="button"
                         name="activity"
                         value = "hiking"
-                        onClick = { this.handleInputChange }>
+                        onClick = { this.handleChange }>
                         Hiking 
                         </Button>
                     <Button 
-                         type="radio"
+                         type="button"
                         name="activity"
                         value = "mountain biking"
-                        onClick = { this.handleInputChange }>
+                        onClick = { this.handleChange }>
                         Biking 
                     </Button> 
                     <Button 
-                        type="radio"
+                        type="button"
                         name="activity"
                         value="camping"
-                        onClick = { this.handleInputChange }>
+                        onClick = { this.handleChange }>
                         Camping 
                     </Button> 
                     <Button 
-                         type="radio"
+                         type="button"
                         name="activity"
                         value="skiing"
-                        onClick = { this.handleInputChange }>
+                        onClick = { this.handleChange }>
                         Snow Sports 
                         </Button> 
                     <Button 
-                         type="radio"
+                         type="button"
                         name="activity"
                         value="paddling"
-                        onClick = { this.handleInputChange }>
-                        Kayaking/Canoeing 
+                        onClick = { this.handleChange }>
+                        Paddling 
                     </Button> 
                   </ButtonGroup>
             </div>
             <div>
             <ButtonGroup bsSize = "large">
                 <Button
-                    type="radio"
+                    type="button"
                     name="searchRadius"
                     value={16094}
-                    onClick = { this.handleInputChange }>
+                    onClick = { this.handleChange }>
                     10 miles 
                  </Button> 
                 <Button
-                    type="radio"
+                    type="button"
                     name="searchRadius"
                     value={32187}
-                    onClick = { this.handleInputChange }> 
+                    onClick = { this.handleChange }> 
                     20 miles 
                 </Button> 
                 <Button
-                    type="radio"
+                    type="button"
                     name="searchRadius"
                     value={48280}
-                    onClick = { this.handleInputChange }> 
+                    onClick = { this.handleChange }> 
                     30 miles 
                 </Button> 
             </ButtonGroup> 
             </div>
             <br />
             <br />
-            <Link to="/Results">
-                <Button>Submit</Button> 
-            </Link>
+            {/*<Link to="/Results">*/}
+                <Button type="submit">Submit</Button> 
+            {/*</Link>*/}
            
         </form>
             </Well>

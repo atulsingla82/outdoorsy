@@ -12,6 +12,10 @@ const LocalStrategy = require('passport-local').Strategy;
 // Create Instance of Express
 const app = express();
 
+// Sets an initial port. We'll use this later in our listener
+const PORT = process.env.PORT || 8080;
+
+
 //bring in the models
 const User = require('./models/User');
 const Adventure = require('./models/Adventure')
@@ -28,8 +32,6 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-// Sets an initial port. Used in our listener
-const PORT = process.env.PORT || 3001;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
