@@ -1,11 +1,12 @@
 // root-level
 // Include Server Dependencies
 const express = require("express");
+const logger = require("morgan");
 const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser");
-const logger = require("morgan");
 const mongoose = require("mongoose");
 const passport = require('passport');
+
 const LocalStrategy = require('passport-local').Strategy;
 
 // Create Instance of Express
@@ -67,3 +68,7 @@ app.use((req, res, next) => {
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
+
+//testing
+// const index = require('./routes/index');
+// const api = require('./routes/api/users');
