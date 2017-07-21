@@ -15,7 +15,6 @@ class App extends Component {
         super(props);
         this.setParentLocation = this.setParentLocation.bind(this);
         this.queryPlaces = this.queryPlaces.bind(this);
-        this.queryPlacesDetails = this.queryPlacesDetails.bind(this);
         this.state = {
             lat: null,
             lng: null,
@@ -40,12 +39,10 @@ class App extends Component {
     }
 
     componentDidUpdate() {
-        const googleAPI = this.state.googleAPI;
         const lat = this.state.lat;
         const lng = this.state.lng;
         const activity = this.state.activity;
         const searchRadius = this.state.searchRadius; 
-        const results = this.state.results;
         if (lat !== null && lng !== null && searchRadius !== null && activity !== "") {
             this.queryPlaces();
         }
@@ -54,7 +51,6 @@ class App extends Component {
     queryPlaces () { 
         const googleAPI = this.state.googleAPI;
         let service;
-        let results
         const initialize = () => {
           const locationCoords = {lat: this.state.lat, lng: this.state.lng};
           const request = {
@@ -64,24 +60,15 @@ class App extends Component {
           };    
           service = new googleAPI.places.PlacesService(document.createElement('div.attributions'));
           let callback = (results, status) => {
-            if (status === googleAPI.places.PlacesServiceStatus.OK) {
+            if (status === googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
               console.log(results);
               this.setState({results: results});
               results = this.state.results;
-              this.queryPlacesDetails(results);
             }
           }
           service.nearbySearch(request, callback);      
         }
         initialize();
-    }
-
-    queryPlacesDetails(results) {
-        const googleAPI = this.state.googleAPI;
-    }
-
-    queryPlacesPhotos() {
-
     }
 
     setParentLocation(newLat, newLng, newActivity, newSearchRadius) {
@@ -98,6 +85,7 @@ class App extends Component {
             return (
                 <Results
                 places={this.state.results}
+                activity={this.state.activity}
                 {...props}
                 />  
             )

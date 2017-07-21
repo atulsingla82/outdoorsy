@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
 import { Grid, Row,Thumbnail,Button,Col,Image} from 'react-bootstrap';
-import Modal from 'react-awesome-modal';
+import CreateOuting from './CreateOuting';
 
-class Results extends React.Component {
+class Results extends Component {
 
-constructor(props) {
+  constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.renderPlaces = this.renderPlaces.bind(this);
-}
+    this.state = {
+      selectedPlace: {},
+      visible: false
+    };
+  }
+  openModal() {
+    this.setState({
+        visible : true
+    });
+  }
+  closeModal() {
+    this.setState({
+        visible : false
+    });
+  }
+  handleClick(event, key) {
+    const selectedPlace = this.props.places[key];
+    this.setState({selectedPlace: selectedPlace});
+  }
 
-renderPlaces(key) {
-    const place = this.props.places[key];
+  renderPlaces(key) {
+    const selectedPlace = this.props.places[key];
     return (
-    <div className="view-places" key={key}>
+    <div className="view-places" key={key} onClick={this.handleClick}>
       <Col xs={6} md={4}>
         <Thumbnail src="/images/hiking2.jpg" alt="242x200">
-        <h4>{place.name}</h4>
-        <p>Description</p>
-        <p>
-          <Button bsStyle="primary">Button</Button>&nbsp;
+        <h4>{selectedPlace.name}</h4>
+        Description
+          <CreateOuting selectedPlace={selectedPlace} activity={this.props.activity} />
           <Button bsStyle="default">Button</Button>
-          </p>
-        </Thumbnail>
+          </Thumbnail>
       </Col>
     </div>
     )
