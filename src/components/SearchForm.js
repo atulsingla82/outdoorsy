@@ -5,17 +5,18 @@ import { ButtonToolbar, Button, ButtonGroup, Well } from 'react-bootstrap';
 
 import '../styles/searchform.css';
 
-class SearchForm extends Component {
+export default class SearchForm extends Component {
     constructor(props) {
         super(props);
         this.getLocation = this.getLocation.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.queryPlaces = this.queryPlaces.bind(this);
         this.state = {
             lat: null,
             lng: null,
             activity: "",
             searchRadius: null,
+            results: []
         }
   }
 
@@ -43,23 +44,35 @@ class SearchForm extends Component {
          autocomplete.addListener('place_changed', onPlaceChanged);
     }
 
+    queryPlaces() { 
+        const googleAPI = this.props.googleAPI;
+        let service;
+        const initialize = () => {
+          const locationCoords = {lat: this.state.lat, lng: this.state.lng};
+          const request = {
+            location: locationCoords,
+            radius: this.state.searchRadius,
+            keyword: [this.state.activity]
+          };    
+          service = new googleAPI.places.PlacesService(document.createElement('div.placesAttrib'));
+          let callback = (results, status) => {
+            if (status == googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
+              console.log(results);
+              this.setState({results: results});
+              let newResults = this.state.results;
+              this.props.setParent(newResults);
+            }
+          }
+          service.nearbySearch(request, callback);      
+        }
+        initialize();
+    }
+
     /*  Grabs values from input button groups and stores them in state */
     handleChange(event) {
         let newState = {};
         newState[event.target.name] = event.target.value;
         this.setState(newState);
-        console.log(this.state);
-    }
-
-    /* Gets triggered when a user clicks on the submit button in the search form
-    /* Stores queryresults in state */
-    handleSubmit(event) {
-        event.preventDefault();
-        const newLat = this.state.lat;
-        const newLng = this.state.lng;
-        const newActivity = this.state.activity;
-        const newSearchRadius = this.state.searchRadius;
-        this.props.setParentLocation(newLat, newLng, newActivity, newSearchRadius);
     }
 
     render() {
@@ -141,14 +154,12 @@ class SearchForm extends Component {
             </div>
             <br />
             <br />
-            {/*<Link to="/Results">*/}
-                <Button type="submit">Submit</Button> 
-            {/*</Link>*/}
+            <Link to="/Results">
+                <Button onClick={this.queryPlaces}>Submit</Button> 
+            </Link>
            
         </form>
             </Well>
         )
     }
 }
-
-export default SearchForm
