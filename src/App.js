@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Grid, Row, Col} from 'react-bootstrap';
-import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch,Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import loadGoogleMapsAPI from 'load-google-maps-api';
 import './styles/App.css';
 import SearchForm from './components/SearchForm';
@@ -78,8 +78,11 @@ export default class App extends Component {
 
             <SearchForm googleAPI={this.state.googleAPI} setParent={this.setParent}/>
             
+            <Switch>
             <Route path="/Results" render={ResultsPageProps}/>
-            <Featured/>
+            <Route path="/" component ={Featured}/>
+            </Switch>
+
             </Row> 
             </Grid>
 
