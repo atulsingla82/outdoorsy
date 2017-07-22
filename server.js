@@ -13,16 +13,35 @@ const LocalStrategy = require('passport-local').Strategy;
 const app = express();
 
 // Sets an initial port. We'll use this later in our listener
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
+// //test
+// app.get("/test", function (req, res) {
+//   console.log("success");
+//   res.send("success 2");
+// })
 
 //bring in the models
 const User = require('./models/User');
 const Adventure = require('./models/Adventure')
 
 // Connect to Mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
-const db = mongoose.connection;
+// mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
+// const db = mongoose.connection;
+
+// db.on("error", function(err) {
+//   console.log("Mongoose Error: ", err);
+// });
+
+// db.once("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
+
+// Connect to mongoose
+const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
+  useMongoClient: true
+  /* other options */
+});
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
@@ -31,7 +50,6 @@ db.on("error", function(err) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
-
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -62,8 +80,6 @@ app.use((req, res, next) => {
   err.status = 404
   next(err);
 });
-
-
 
 
 // Listener
