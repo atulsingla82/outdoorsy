@@ -1,3 +1,12 @@
+import axios from 'axios';
+
+export default {
+
+	createUser(formData){
+		return axios.post("/createUser", formData )
+	
+	}
+};
 // import SearchForm from '../SearchForm';
 
 // const helpers = {

@@ -3,12 +3,19 @@ import React, { Component } from 'react';
 // import { Link, Route } from 'react-router-dom';
 import Modal from 'react-awesome-modal';
 import Login from './Login.js';
+//Helper for making AJAX calls to the database
+import helpers from '../utils/helpers';
+
 
 export default class Register extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          visible : false
+          visible : false,
+          firstname: "",
+          lastname: "",
+          emailaddress: "",
+          password: ""
       }
   }
 
@@ -17,11 +24,26 @@ export default class Register extends Component {
           visible : true
       });
   }
-
   closeModal() {
       this.setState({
           visible : false
       });
+  }
+
+  handleChange(event){
+    console.log(event.target);
+    // this.setState({firstname: event.target.value, lastname: event.target.value, 
+    //   emailaddress: event.target.value, password: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+
+    helpers.createUser(this.state)
   }
  
   render() {
@@ -42,39 +64,46 @@ export default class Register extends Component {
           <div>
             <br/>
             <h1>Register</h1>
-            <form>
+            <form onSubmit = {this.handleSubmit.bind(this)}>
               <br/>
               <label>First Name:</label>
               <input
-                name="firstName"
+                name="firstname"
                 type="text"
+                onChange={this.handleChange.bind(this)}
                 // width="80%"
               />
               <br/>
               <label>Last Name:</label>
               <input
-                name="lastName"
+                name="lastname"
                 type="text"
+                onChange={this.handleChange.bind(this)}
                 // width="80%"
               />
               <br/>
-              <lable>Email</lable>
+              <label>Email</label>
               <input
-                name="email"
+                name="emailaddress"
                 type="text"
+                onChange={this.handleChange.bind(this)}
+
                 // width="80%"
               />
               <br/>
-              <lable>Password</lable>
+              <label>Password</label>
               <input
                 name="password"
                 type="text"
+                onChange={this.handleChange.bind(this)}
+                
                 // width="80%"
               />
               <br/>
               <input
                 type="submit"
-                value="submit"
+                className="button"
+                //value="submit"
               />
             </form>
             
