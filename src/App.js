@@ -10,18 +10,17 @@ import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
-        this.setParentLocation = this.setParentLocation.bind(this);
-        this.queryPlaces = this.queryPlaces.bind(this);
+        this.setParent = this.setParent.bind(this);
         this.state = {
             lat: null,
             lng: null,
             activity: "",
             searchRadius: null,
             apiLoaded: false,
-            results: [],
+            results: []
         }
     }
 
@@ -38,7 +37,7 @@ class App extends Component {
         })
     }
 
-    componentDidUpdate() {
+    /*componentDidUpdate() {
         const lat = this.state.lat;
         const lng = this.state.lng;
         const activity = this.state.activity;
@@ -46,37 +45,11 @@ class App extends Component {
         if (lat !== null && lng !== null && searchRadius !== null && activity !== "") {
             this.queryPlaces();
         }
-    }
+    }*/
 
-    queryPlaces () { 
-        const googleAPI = this.state.googleAPI;
-        let service;
-        const initialize = () => {
-          const locationCoords = {lat: this.state.lat, lng: this.state.lng};
-          const request = {
-            location: locationCoords,
-            radius: this.state.searchRadius,
-            keyword: [this.state.activity]
-          };    
-          service = new googleAPI.places.PlacesService(document.createElement('div.attributions'));
-          let callback = (results, status) => {
-            if (status === googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
-              console.log(results);
-              this.setState({results: results});
-              results = this.state.results;
-            }
-          }
-          service.nearbySearch(request, callback);      
-        }
-        initialize();
-    }
-
-    setParentLocation(newLat, newLng, newActivity, newSearchRadius) {
+    setParent(newResults) {
         this.setState({
-            lat: newLat,
-            lng: newLng,
-            activity: newActivity,
-            searchRadius: newSearchRadius
+            results: newResults
         });
     }
 
@@ -86,6 +59,8 @@ class App extends Component {
                 <Results
                 places={this.state.results}
                 activity={this.state.activity}
+                googleAPI={this.state.googleAPI}
+                queryPlaces={this.queryPlaces}
                 {...props}
                 />  
             )
@@ -101,10 +76,10 @@ class App extends Component {
             <Row className = "show-grid">
             <Banner />
 
-            <SearchForm setParentLocation={this.setParentLocation} googleAPI={this.state.googleAPI} />
-            <Featured/>
+            <SearchForm googleAPI={this.state.googleAPI} setParent={this.setParent}/>
+            
             <Route path="/Results" render={ResultsPageProps}/>
-
+            <Featured/>
             </Row> 
             </Grid>
 
@@ -116,7 +91,3 @@ class App extends Component {
     }
 
 }
-
-
-
-export default App;
