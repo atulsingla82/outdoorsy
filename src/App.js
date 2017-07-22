@@ -10,7 +10,7 @@ import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.setParentLocation = this.setParentLocation.bind(this);
@@ -58,7 +58,7 @@ class App extends Component {
             radius: this.state.searchRadius,
             keyword: [this.state.activity]
           };    
-          service = new googleAPI.places.PlacesService(document.createElement('div.attributions'));
+          service = new googleAPI.places.PlacesService(document.createElement('div.placesAttrib'));
           let callback = (results, status) => {
             if (status === googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
               console.log(results);
@@ -86,6 +86,7 @@ class App extends Component {
                 <Results
                 places={this.state.results}
                 activity={this.state.activity}
+                googleAPI={this.state.googleAPI}
                 {...props}
                 />  
             )
@@ -116,7 +117,3 @@ class App extends Component {
     }
 
 }
-
-
-
-export default App;

@@ -15,7 +15,7 @@ class SearchForm extends Component {
             lat: null,
             lng: null,
             activity: "",
-            searchRadius: null,
+            searchRadius: null
         }
   }
 
@@ -48,7 +48,6 @@ class SearchForm extends Component {
         let newState = {};
         newState[event.target.name] = event.target.value;
         this.setState(newState);
-        console.log(this.state);
     }
 
     /* Gets triggered when a user clicks on the submit button in the search form

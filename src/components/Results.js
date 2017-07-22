@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Grid, Row,Thumbnail,Button,Col,Image} from 'react-bootstrap';
 import CreateOuting from './CreateOuting';
+import ViewPlace from './ViewPlace';
 
-class Results extends Component {
+export default class Results extends Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.renderPlaces = this.renderPlaces.bind(this);
+    this.queryPlaceDetails = this.queryPlaceDetails.bind(this);
     this.state = {
-      selectedPlace: {},
+      detailedPlace: {},
       visible: false
     };
   }
@@ -23,13 +24,33 @@ class Results extends Component {
         visible : false
     });
   }
-  handleClick(event, key) {
-    const selectedPlace = this.props.places[key];
-    this.setState({selectedPlace: selectedPlace});
+
+  queryPlaceDetails(placeId) {
+    const googleAPI = this.props.googleAPI;
+    let service;
+    var request = {
+          placeId: placeId
+        };
+    service = new googleAPI.places.PlacesService(document.createElement('div.placeDetailsAttrib'));
+    function callback(place, status) {
+      if (status == googleAPI.places.PlacesServiceStatus.OK) {
+        console.log(place);
+        this.setState({detailedPlace: place})
+        return;
+      }
+    }
+    service.getDetails(request, callback);
+  }
+
+  handleClick(event) {
+    if (event.target.value == "More Details") {
+      this.queryPlaceDetails(event.target.id);
+    }
   }
 
   renderPlaces(key) {
     const selectedPlace = this.props.places[key];
+    const placeId = selectedPlace.place_id;
     return (
     <div className="view-places" key={key} onClick={this.handleClick}>
       <Col xs={6} md={4}>
@@ -37,12 +58,14 @@ class Results extends Component {
         <h4>{selectedPlace.name}</h4>
         Description
           <CreateOuting selectedPlace={selectedPlace} activity={this.props.activity} />
-          <Button bsStyle="default">Button</Button>
+          <ViewPlace placeId={placeId} detailedPlace={this.state.detailedPlace}/>
           </Thumbnail>
       </Col>
     </div>
     )
   }
+
+ 
 
 render(){
   return (
@@ -63,8 +86,3 @@ render(){
   	)
   }
 }
-
-export default Results;
-
-
-
