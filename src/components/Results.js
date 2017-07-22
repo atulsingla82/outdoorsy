@@ -10,22 +10,23 @@ export default class Results extends Component {
     this.renderPlaces = this.renderPlaces.bind(this);
     this.queryPlaceDetails = this.queryPlaceDetails.bind(this);
     this.state = {
-      detailedPlace: {},
-      visible: false
-    };
+      detailedPlace: {}
+    }
+
   }
 
   queryPlaceDetails(placeId) {
     const googleAPI = this.props.googleAPI;
     let service;
+    let place;
     var request = {
           placeId: placeId
         };
     service = new googleAPI.places.PlacesService(document.createElement('div.placeDetailsAttrib'));
     let callback = (place, status) => {
       if (status == googleAPI.places.PlacesServiceStatus.OK) {
-        console.log(place);
-        return place;
+        console.log(place)
+          return place;
       }
     }
     service.getDetails(request, callback);

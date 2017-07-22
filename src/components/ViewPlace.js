@@ -8,20 +8,24 @@ export default class ViewPlace extends Component {
       super(props);
       this.state = {
         visible : false,
+        beforeQuery: true,
         detailedPlace: {}
       }
   }
 
   componentDidUpdate() {
-    if (this.state.detailedPlace = {}) {
+    if (this.state.beforeQuery === true) {
       this.props.queryPlaceDetails(this.props.placeId);
+      this.setState({
+        detailedPlace: place,
+        beforeQuery: false
+      })
     }
   }
 
   openModal() {
       this.setState({
         visible : true,
-        
       });
   }
 
@@ -43,8 +47,8 @@ export default class ViewPlace extends Component {
         />
         <Modal 
         	visible={this.state.visible} 
-        	width="60%" 
-        	height="80%" 
+        	width="80%" 
+        	height="90%" 
         	effect="fadeInUp" 
         	onClickAway={() => this.closeModal()}>
           <div>
