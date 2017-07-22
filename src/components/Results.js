@@ -14,16 +14,6 @@ export default class Results extends Component {
       visible: false
     };
   }
-  openModal() {
-    this.setState({
-        visible : true
-    });
-  }
-  closeModal() {
-    this.setState({
-        visible : false
-    });
-  }
 
   queryPlaceDetails(placeId) {
     const googleAPI = this.props.googleAPI;
@@ -32,33 +22,26 @@ export default class Results extends Component {
           placeId: placeId
         };
     service = new googleAPI.places.PlacesService(document.createElement('div.placeDetailsAttrib'));
-    function callback(place, status) {
+    let callback = (place, status) => {
       if (status == googleAPI.places.PlacesServiceStatus.OK) {
         console.log(place);
-        this.setState({detailedPlace: place})
-        return;
+        return place;
       }
     }
     service.getDetails(request, callback);
-  }
-
-  handleClick(event) {
-    if (event.target.value == "More Details") {
-      this.queryPlaceDetails(event.target.id);
-    }
   }
 
   renderPlaces(key) {
     const selectedPlace = this.props.places[key];
     const placeId = selectedPlace.place_id;
     return (
-    <div className="view-places" key={key} onClick={this.handleClick}>
+    <div className="view-places" key={key} id={placeId} onClick={this.handleClick}>
       <Col xs={6} md={4}>
         <Thumbnail src="/images/hiking2.jpg" alt="242x200">
         <h4>{selectedPlace.name}</h4>
         Description
           <CreateOuting selectedPlace={selectedPlace} activity={this.props.activity} />
-          <ViewPlace placeId={placeId} detailedPlace={this.state.detailedPlace}/>
+          <ViewPlace placeId={placeId} queryPlaceDetails={this.queryPlaceDetails} />
           </Thumbnail>
       </Col>
     </div>

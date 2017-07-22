@@ -8,12 +8,20 @@ export default class ViewPlace extends Component {
       super(props);
       this.state = {
         visible : false,
+        detailedPlace: {}
       }
+  }
+
+  componentDidUpdate() {
+    if (this.state.detailedPlace = {}) {
+      this.props.queryPlaceDetails(this.props.placeId);
+    }
   }
 
   openModal() {
       this.setState({
-        visible : true
+        visible : true,
+        
       });
   }
 
@@ -29,7 +37,8 @@ export default class ViewPlace extends Component {
       <section align="left">
         <input 
         	type="button" 
-        	value="More Details" 
+        	value="More Details"
+          id={this.props.placeId} 
         	onClick={() => this.openModal()} 
         />
         <Modal 
