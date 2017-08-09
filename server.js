@@ -25,17 +25,7 @@ const PORT = process.env.PORT || 3001;
 const User = require('./models/User');
 const Adventure = require('./models/Adventure')
 
-// Connect to Mongoose
-// mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
-// const db = mongoose.connection;
 
-// db.on("error", function(err) {
-//   console.log("Mongoose Error: ", err);
-// });
-
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
 
 // Connect to mongoose
 const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
